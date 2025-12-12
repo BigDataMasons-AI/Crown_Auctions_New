@@ -30,6 +30,22 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Verify AWS secrets are set
+        run: |
+          if [ -z "${{ secrets.AWS_ACCESS_KEY_ID }}" ]; then
+            echo "❌ AWS_ACCESS_KEY_ID is not set"
+            exit 1
+          fi
+          if [ -z "${{ secrets.AWS_SECRET_ACCESS_KEY }}" ]; then
+            echo "❌ AWS_SECRET_ACCESS_KEY is not set"
+            exit 1
+          fi
+          if [ -z "${{ secrets.AWS_S3_BUCKET }}" ]; then
+            echo "❌ AWS_S3_BUCKET is not set"
+            exit 1
+          fi
+          echo "✅ All required AWS secrets are set"
+
       - name: Build application
         env:
           VITE_SUPABASE_PROJECT_ID: ${{ secrets.VITE_SUPABASE_PROJECT_ID }}
@@ -42,7 +58,7 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: "us-west-1"
+          aws-region: us-west-1
 
       - name: Deploy to S3
         run: |
