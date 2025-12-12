@@ -1,0 +1,34 @@
+project_id = "xnzikbvgncdhzmssdzyx"
+
+[functions.send-outbid-notification]
+verify_jwt = true
+
+[functions.predict-auction-price]
+verify_jwt = true
+
+[functions.send-auction-status-email]
+verify_jwt = true
+
+[functions.send-submission-withdrawal-email]
+verify_jwt = true
+
+[functions.activate-scheduled-auctions]
+verify_jwt = false
+
+[functions.send-appraiser-status-email]
+verify_jwt = true
+
+[functions.send-contact-inquiry]
+verify_jwt = false
+
+[functions.send-item-inquiry]
+verify_jwt = false
+
+[functions.paypal-deposit]
+verify_jwt = true
+
+[functions.send-refund-status-email]
+verify_jwt = true
+
+[functions.detect-region]
+verify_jwt = false
